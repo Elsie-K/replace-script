@@ -1,1 +1,29 @@
+#!/bin/bash
+
+if [ "$1" = "setup" ]; then
+    rm -rf test
+    mkdir -p test/edu/bvu/cs
+    cat > test/edu/bvu/cs/DevOps.java <<EOF
+public class DevOps {
+    public DevOps() {
+    }
+}
+EOF
+    cat > test/edu/bvu/cs/DevOpsMain.java <<EOF
+public class DevOpsMain {
+    public static void main(String[] args) {
+        DevOps dev = new DevOps();
+    }
+}
+EOF
+elif [ "$1" = "teardown" ]; then
+    if [ -d "test" ]; then
+        rm -rf test
+    else
+        echo "test does not exist"
+    fi
+else
+    echo "Usage: run-test setup|teardown"
+fi
+
 
